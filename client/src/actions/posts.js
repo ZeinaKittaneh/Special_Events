@@ -16,6 +16,7 @@ export const getPosts = () => async(dispatchAction) => {
 export const createPost = (post) => async(dispatchAction) => {
     try {
         const {data} = await api.createPost(post); ////axios.post(url, newPost)
+        console.log("data before dispatching actions!", post);
         dispatchAction({type: CREATE, payload:data})
     } catch (error) {
         console.log(error.message);      
