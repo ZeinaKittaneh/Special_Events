@@ -49,8 +49,10 @@ const Post=({post, setCurrentId}) => {
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"                           
-                >                    
-                    <Form currentId={post._id} setCurrentID={setCurrentId}/>    
+                >   
+                    <div>
+                        <Form currentId={post._id} setCurrentID={setCurrentId}/>    
+                    </div>                 
                 </Modal>
             </div>
                 <Typography className="Title tag" variant="body2" color="textSecondary">
