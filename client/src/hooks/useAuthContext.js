@@ -1,8 +1,8 @@
-import { AuthContext } from "../contexts/AuthContext";
+import { authContext } from "../contexts/AuthContext";
 import{useContext} from 'react'
 
-export const useAuthContext = () => {
-    const context = useContext(AuthContext)
+const useAuthContext = () => {
+    const context = useContext(authContext)
 
     if(!context){
         throw Error("useAuthContext can only be used from"
@@ -10,3 +10,5 @@ export const useAuthContext = () => {
     }
     return context
 }
+
+export default useAuthContext

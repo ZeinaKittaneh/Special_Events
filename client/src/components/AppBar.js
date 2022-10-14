@@ -12,10 +12,12 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
-import { GoogleLogin, googleLogout } from '@react-oauth/google';
+// import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { Link } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const loginSignup = ['signin', 'signup']
 
 const ResponsiveAppBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -41,7 +43,7 @@ const ResponsiveAppBar = () => {
     <AppBar position="static"  variant='elevated' sx={{backgroundColor: "#356CB1", borderRadius: "10px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <AdbIcon sx={{ display: 'flex', mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -95,9 +97,10 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
             </Menu>
+
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+          {/* <Typography
             variant="h5"
             noWrap
             component="a"
@@ -113,8 +116,8 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
-          </Typography>
+            LOGO_S
+          </Typography> */}
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -125,6 +128,12 @@ const ResponsiveAppBar = () => {
                 {page}
               </Button>
             ))}
+          </Box>
+
+          <Box sx={{display: "flex"}}>
+                <Button><Link to = {`/`} style={{ textDecoration: 'none', color: 'white'}}>home</Link></Button>
+                <Button><Link to = {`/signin`} style={{ textDecoration: 'none', color: 'white'}}>sign in</Link></Button>
+                <Button><Link to = {`/signup`} style={{ textDecoration: 'none', color: 'white'}}>sign up</Link></Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -156,11 +165,11 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-      <div>{user? <div>Logged In</div> : 
+      {/* <div>{user? <div>Logged In</div> : 
       <GoogleLogin
       onSuccess={(response)=> {console.log(response)}}
       onError={()=> {console.log("Error while logging in!")}}
-      />}</div>  
+      />}</div>   */}
         </Toolbar>
       </Container>
     </AppBar>

@@ -8,17 +8,17 @@ import thunk from 'redux-thunk';
 import reducers from './reducers';
 import './index.css'
 import { StyledEngineProvider } from '@mui/material/styles';
-import { authContextProvider } from "./contexts/AuthContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 const store = configureStore({reducer: reducers});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <StyledEngineProvider injectFirst>
-        <authContextProvider>
+        <AuthContextProvider>
             <Provider store={store}>
                 <App />
             </Provider>
-        </authContextProvider>
+        </AuthContextProvider>
     </StyledEngineProvider>,
 );
