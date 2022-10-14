@@ -7,12 +7,18 @@ import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk';
 import reducers from './reducers';
 import './index.css'
+import { StyledEngineProvider } from '@mui/material/styles';
+import { AuthContextProvider } from "./contexts/AuthContext";
 
 const store = configureStore({reducer: reducers});
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+    <StyledEngineProvider injectFirst>
+        <AuthContextProvider>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </AuthContextProvider>
+    </StyledEngineProvider>,
 );
