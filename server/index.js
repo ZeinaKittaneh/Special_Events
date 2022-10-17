@@ -16,9 +16,9 @@ app.use(cors())
 app.use('/posts', postRoutes); // add all "posts" routes 
 app.use('/user', userRoutes); // add all "user" routes {login, signup} 
 
-app.get('/', (req, res) => {
-    res.send('Welcome to My memories app!');
-});//to be shown on the first request of our website
+// app.get('/', (req, res) => {
+//     res.send('Welcome to My memories app!');
+// });//to be shown on the first request of our website
 
 const PORT = process.env.PORT || 5000; //the port will be filled by Heroku
 //connect to mongoDB
