@@ -1,4 +1,13 @@
 {
+  "scripts": {
+    "build" : "cd client && npm run build",
+    "install-client": "cd client && npm install",
+    "frontend": "cd client && npm start",
+    "start": "cd server && nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm run install-client && npm run build"
+  },
+  
   "dependencies": {
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
