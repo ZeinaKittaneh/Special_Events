@@ -10,7 +10,7 @@ const Signup = () => {
     const handleSubmit = async(e) => {
         e.preventDefault()
         console.log(email, password)
-        await signup({email, password})
+        await signup(email, password)
     }
 
     const style = {
@@ -49,8 +49,8 @@ const Signup = () => {
                 />
 
                 <Button onClick={handleSubmit} disabled={isLoading}>Sign up</Button>
-                <div>{isError && <Alert severity="error">{isError}</Alert>}</div>
             </form>
+                <div>{isError && <Alert severity="error">{isError}</Alert>}</div>
         </Paper>
     )
 }

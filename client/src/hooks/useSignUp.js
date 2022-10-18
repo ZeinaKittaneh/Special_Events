@@ -6,7 +6,7 @@ import axios from 'axios';
 export const UseSignUp = () => {
     const [isLoading, setIsLoading] = useState(null)
     const [isError, setIsError] = useState(null)
-    const userUrl = 'https://happy-memories.herokuapp.com/user';//get all posts requests in the database
+    const userUrl = '/user';//get all users requests in the database
 
     const {dispatch} = useAuthContext()
 
@@ -22,22 +22,28 @@ export const UseSignUp = () => {
         // body: JSON.stringify({email, password})
         // })
 
-        await axios.post(userUrl, {"body":{email, password}}, {
+        await axios.post(userUrl + "/signup", JSON.stringify({"email": email, "password": password}), {
             headers: {
             'Content-Type': 'application/json'
             }
           }
         ).then((response) => {
-            const jsonResponse = response.json()
+            // const jsonResponse = response.json()
             //call dispatch from useAuthContext
-            dispatch({type: "LOGIN", payload: jsonResponse})
+            dispatch({type: "LOGIN", payload: response})
 
             //store the user in the local storage
-            localStorage.setItem(JSON.stringify({jsonResponse}))
+            localStorage.setItem('user', JSON.stringify(response.data))
 
             setIsLoading(false)
           }).catch((error) => {
-            setIsError("Server Error!")
+            console.log("received payload sent not working: email: ", email + ", pass:" + password)
+
+            console.log(error)
+            if(error.response != null)
+              setIsError(error.response.data.error)
+            else
+              setIsError("Error while sending data!")
             setIsLoading(false)
           })
 

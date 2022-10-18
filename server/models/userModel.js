@@ -18,7 +18,7 @@ const userSchema = new Schema({
 
 // static signup method
 userSchema.statics.signup = async function(email, password) {
-
+  console.log("received payload : email: ", email + ", pass:" + password)
   // validation
   if (!email || !password) {
     throw Error('All fields must be filled')
@@ -46,6 +46,7 @@ userSchema.statics.signup = async function(email, password) {
 
 // static login method
 userSchema.statics.login = async function(email, password) {
+  console.log("received payload : email: ", email + ", pass:" + password)
 
   if (!email || !password) {
     throw Error('All fields must be filled')
