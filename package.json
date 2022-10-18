@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build" : "cd client && npm run build",
-    "install-client": "cd client && npm install",
+    "install-client": "cd client && npm config set legacy-peer-deps true && npm install",
     "frontend": "cd client && npm start",
     "start": "cd server && nodemon index.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
