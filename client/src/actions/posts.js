@@ -3,12 +3,12 @@ import {FETCH_ALL, DELETE, CREATE, UPDATE} from '../constants/actionTypes';
 //create actions:
 //use async from redux thunk, b.c payload should be passed asyncronuosely
 export const getPosts = () => async(dispatchAction) => {
-    try { //{data} is from the response of the api
+    try { //is from the response of the api
         const {data} = await api.fetchPosts(); //axios.get(url); url: http://localhost:5000/posts
         dispatchAction({type: FETCH_ALL, payload: data}); 
 
     } catch (error) {
-        console.log(error.message);
+        console.log(error);
     }
     
 }

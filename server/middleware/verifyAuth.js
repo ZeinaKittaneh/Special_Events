@@ -3,16 +3,16 @@ import User from '../models/userModel.js'
 
 const verifyAuth = async (req, res, next) => {
     //get headers from the request
-    const auth = req.headers.authorization
+    const {authorization} = req.headers
 
     //if no headers found
-    if(!auth){
+    if(!authorization){
         console.log("auth token required!")
         return res.status(401).json({error: 'Authorization token required!'})
     }
 
     //get token from the headers: bearer part1.part2.part3
-    const token = auth.split(' ')[1]
+    const token = authorization.split(' ')[1]
 
     try{
         //verify if token is valid
