@@ -3,19 +3,19 @@ import useAuthContext from "./useAuthContext"
 import * as api from "../api"
 import axios from 'axios';
 
-export const UseSignUp = () => {
+export const UseLogin = () => {
     const [isLoading, setIsLoading] = useState(null)
     const [isError, setIsError] = useState(null)
     const userUrl = '/user';//get all users requests in the database
 
     const {dispatch} = useAuthContext()
 
-    const signup = async(email, password) => {
+    const login = async(email, password) => {
         setIsLoading(true)
         setIsError(false)
         
-        //sending signup request to server        
-        await axios.post(userUrl + "/signup", JSON.stringify({"email": email, "password": password}), {
+        //sending login request to server        
+        await axios.post(userUrl + "/login", JSON.stringify({"email": email, "password": password}), {
             headers: {
             'Content-Type': 'application/json'
             }
@@ -40,5 +40,5 @@ export const UseSignUp = () => {
             setIsLoading(false)
           })
     }
-    return {signup, isLoading, isError}
+    return {login, isLoading, isError}
 }

@@ -14,12 +14,14 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 // import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { Link } from 'react-router-dom';
+import {useLogout} from '../hooks/useLogout';
+import useAuthContext from '../hooks/useAuthContext';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-const loginSignup = ['signin', 'signup']
 
-const ResponsiveAppBar = () => {
+function ResponsiveAppBar() {
+  const {user} = useAuthContext()
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -37,8 +39,13 @@ const ResponsiveAppBar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const {logout} = useLogout();
+
+  const handleLogout = () =>{
+    logout()
+  }
   
-  const user = false;
   return (
     <AppBar position="static"  variant='elevated' sx={{backgroundColor: "#356CB1", borderRadius: "10px"}}>
       <Container maxWidth="xl">
@@ -130,41 +137,45 @@ const ResponsiveAppBar = () => {
             ))}
           </Box>
 
-          <Box sx={{display: "flex"}}>
+          {user && (<Box sx={{display: "flex"}}><Box>
+            <Button onClick={handleLogout} style={{marginRight: '10px', textDecoration: 'none', color: 'white', padding: '5px', border: '1px solid', borderRadius:'7px'}}>logout</Button>
+            </Box>
+
+            <Box sx={{ flexGrow: 0}}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                  <Avatar alt="Zeina Jawad"/>
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                    <Typography textAlign="center">{setting}</Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box></Box>)}
+          {!user && <Box sx={{display: "flex"}}>
                 <Button><Link to = {`/`} style={{ textDecoration: 'none', color: 'white'}}>home</Link></Button>
                 <Button><Link to = {`/signin`} style={{ textDecoration: 'none', color: 'white'}}>sign in</Link></Button>
                 <Button><Link to = {`/signup`} style={{ textDecoration: 'none', color: 'white'}}>sign up</Link></Button>
-          </Box>
+          </Box>}
 
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Zeina Jawad"/>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
       {/* <div>{user? <div>Logged In</div> : 
       <GoogleLogin
       onSuccess={(response)=> {console.log(response)}}

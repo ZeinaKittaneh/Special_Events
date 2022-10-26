@@ -1,14 +1,15 @@
 import {useState} from 'react';
-import { Typography, Button, Paper, TextField } from '@mui/material';
-
+import { Typography, Button, Paper, TextField, Alert } from '@mui/material';
+import {UseLogin} from '../hooks/useLogin'
 
 const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    
-    const handleSubmit = (e) => {
+    const {login, isLoading, isError} = UseLogin()
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
-    
+        await login(email, password)
         console.log(email, password)
     }
     
@@ -47,8 +48,9 @@ const Signin = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 />
 
-                <Button onClick={handleSubmit}>Sign in</Button>
+                <Button onClick={handleSubmit} disabled={isLoading}>Sign in</Button>
             </form>
+                <div>{isError && <Alert severity="error">{isError}</Alert>}</div>
         </Paper>
     )
 }

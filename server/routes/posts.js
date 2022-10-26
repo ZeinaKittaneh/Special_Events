@@ -1,6 +1,11 @@
 import express from 'express';
 import {getPosts, createPost, updatePost, deletePost, likePost} from '../controllers/posts.js'
-const router = express.Router();
+import verifyAuth from '../middleware/verifyAuth.js';
+
+const router = express.Router()
+
+//make router check the authorization of request before carry on to the posts routes
+router.use(verifyAuth)
 
 router.get('/', getPosts);// from controllers
 router.post('/', createPost); // from controllers

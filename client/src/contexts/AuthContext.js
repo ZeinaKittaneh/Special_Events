@@ -1,5 +1,5 @@
-import React from 'react';
-import {createContext, useReducer} from 'react';
+import React, { useEffect } from 'react';
+import {createContext, useReducer, useState} from 'react';
 
 export const authReducer = function(state, action){
     switch(action.type){
@@ -19,6 +19,13 @@ export const authContext = createContext();
 export const AuthContextProvider = function({children}){
     //in my reducer I combine all actions/states that I have in my context
     const [state, dispatch] = useReducer(authReducer, {user: null})
+
+    //useEffect only once:
+    useEffect(() => {
+        const userJson = JSON.parse(localStorage.getItem('user'))
+        if(userJson)
+            dispatch({type: "LOGIN", payload: userJson})
+    }, [])
 
     console.log("current state", state)
 
