@@ -6,8 +6,10 @@ const verifyAuth = async (req, res, next) => {
     const auth = req.headers.authorization
 
     //if no headers found
-    if(!auth)
+    if(!auth){
+        console.log("auth token required!")
         return res.status(401).json({error: 'Authorization token required!'})
+    }
 
     //get token from the headers: bearer part1.part2.part3
     const token = auth.split(' ')[1]
@@ -21,7 +23,7 @@ const verifyAuth = async (req, res, next) => {
         next()
 
     }catch(error){
-        console.log(error)
+        console.log("Invalid token")
         res.status(401).json({error: 'Invalid token!'})
     }
 }
