@@ -6,7 +6,7 @@ import Posts from "../components/Posts/Posts";
 import Form from "../components/Form/Form";
 import useStyles from "../styles"
 import { useDispatch } from "react-redux"; // to dispatch actions
-import {GetPosts} from '../actions/posts';
+import GetPosts from '../actions/posts';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 // import { GoogleOAuthProvider } from '@react-oauth/google';

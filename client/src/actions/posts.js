@@ -13,7 +13,7 @@ import useAuthContext from '../hooks/useAuthContext';
   }
 }
  */
-export function GetPosts(){
+export default function GetPosts(){
     const {user} = useAuthContext()
     return async function F(dispatchAction){
         // try { //is from the response of the api
