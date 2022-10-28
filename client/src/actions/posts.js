@@ -1,10 +1,13 @@
 import * as api from '../api';
 import {FETCH_ALL, DELETE, CREATE, UPDATE} from '../constants/actionTypes';
+import useAuthContext from '../hooks/useAuthContext';
+
 //create actions:
 //use async from redux thunk, b.c payload should be passed asyncronuosely
 export const getPosts = () => async(dispatchAction) => {
+    const {user} = useAuthContext()
     try { //is from the response of the api
-        const {data} = await api.fetchPosts(); //axios.get(url); url: http://localhost:5000/posts
+        const {data} = await api.fetchPosts(user); //axios.get(url); url: http://localhost:5000/posts
         dispatchAction({type: FETCH_ALL, payload: data}); 
 
     } catch (error) {
