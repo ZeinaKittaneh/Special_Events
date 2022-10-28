@@ -4,16 +4,25 @@ import useAuthContext from '../hooks/useAuthContext';
 
 //create actions:
 //use async from redux thunk, b.c payload should be passed asyncronuosely
-export async function GetPosts(dispatchAction){
-    const {user} = useAuthContext()
-    try { //is from the response of the api
-        const {data} = await api.fetchPosts(user); //axios.get(url); url: http://localhost:5000/posts
-        dispatchAction({type: FETCH_ALL, payload: data}); 
-
-    } catch (error) {
-        console.log(error);
+/**
+ * 
+ * function handleChange(field) {
+  return function(e) {
+    e.preventDefault()
+    // Do something here
+  }
+}
+ */
+export function GetPosts(){
+    async function F(dispatchAction){
+        const {user} = useAuthContext()
+        try { //is from the response of the api
+            const {data} = await api.fetchPosts(user); //axios.get(url); url: http://localhost:5000/posts
+            return dispatchAction({type: FETCH_ALL, payload: data});
+        } catch (error) {
+            console.log(error);
+        }
     }
-    
 }
 
 export const createPost = (post) => async(dispatchAction) => {
