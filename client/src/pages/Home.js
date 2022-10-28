@@ -6,7 +6,7 @@ import Posts from "../components/Posts/Posts";
 import Form from "../components/Form/Form";
 import useStyles from "../styles"
 import { useDispatch } from "react-redux"; // to dispatch actions
-import {getPosts} from '../actions/posts';
+import {GetPosts} from '../actions/posts';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 // import { GoogleOAuthProvider } from '@react-oauth/google';
@@ -22,7 +22,7 @@ const Home = () => {
     const classes = useStyles();
     const dispatchAction = useDispatch();
     useEffect(()=>{
-        dispatchAction(getPosts()); 
+        dispatchAction(GetPosts()); 
         // when we dispatch the action, we go to the posts reducers to handle the logic of fetching All posts 
     }, [currentId, dispatchAction]);
 
