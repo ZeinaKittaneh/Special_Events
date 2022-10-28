@@ -16,12 +16,12 @@ import useAuthContext from '../hooks/useAuthContext';
 export function GetPosts(){
     const {user} = useAuthContext()
     return async function F(dispatchAction){
-        try { //is from the response of the api
-            const {data} = await api.fetchPosts(user); //axios.get(url); url: http://localhost:5000/posts
-            dispatchAction({type: FETCH_ALL, payload: data});
-        } catch (error) {
-            console.log(error);
-        }
+        // try { //is from the response of the api
+        //     const {data} = await api.fetchPosts(user); //axios.get(url); url: http://localhost:5000/posts
+        //     dispatchAction({type: FETCH_ALL, payload: data});
+        // } catch (error) {
+        //     console.log(error);
+        // }
     }
 }
 
