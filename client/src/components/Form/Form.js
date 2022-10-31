@@ -7,7 +7,7 @@ import './styles.css'
 import FileBase from 'react-file-base64';
 import {useDispatch, useSelector} from 'react-redux';
 import { createPost, updatePost} from "../../actions/posts";
-
+import useAuthContext from "../../hooks/useAuthContext";
 // currentIdReceived, setCurrentID, closeModal
 
 const Form=(props) => {
@@ -23,10 +23,14 @@ const Form=(props) => {
     const [messageSeverity, setMessageSeverity] = useState(null);
     
     const dispatchAction = useDispatch();
-    
+    const {user} = useAuthContext()
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+        if(!user){
+            setMessage("Please login before creating a post!");   
+            setMessageSeverity("error");
+            return
+        }
         if(props.currentId != null) //if post id was sent, it means it is an update
             {
                 try{
@@ -55,7 +59,7 @@ const Form=(props) => {
                         setMessageSeverity("error");
                     }
                     else{
-                        dispatchAction(createPost(postData));
+                        dispatchAction(createPost(postData, user));
                         setMessage("Memory successfully added!");
                         setMessageSeverity("success");
                     }

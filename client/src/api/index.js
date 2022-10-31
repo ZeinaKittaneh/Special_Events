@@ -5,13 +5,13 @@ const userUrl = 'http://localhost:5000/user';//get all users requests in the dat
 
 export const fetchPosts = (user) => axios.get(url, { headers: { Authorization: `Bearer ${user.token}` } });
 
-export const createPost = (newPost) => axios.post(url, newPost);
+export const createPost = (newPost, user) => axios.post(url, newPost, { headers: { Authorization: `Bearer ${user.token}` } });
 
-export const updatePost = (id, updatedMemory) => axios.patch(`${url}/${id}`, updatedMemory);
+export const updatePost = (id, updatedMemory, user) => axios.patch(`${url}/${id}`, updatedMemory, { headers: { Authorization: `Bearer ${user.token}` } });
 
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
+export const deletePost = (id, user) => axios.delete(`${url}/${id}`, { headers: { Authorization: `Bearer ${user.token}` } });
 
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
+export const likePost = (id, user) => axios.patch(`${url}/${id}/likePost`, { headers: { Authorization: `Bearer ${user.token}` } });
 
 
 export const loginUser = (user) => axios.post(userUrl, {"body":user}, {

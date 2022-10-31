@@ -24,7 +24,9 @@ const Home = () => {
     const dispatchAction = useDispatch();
     const {user} = useAuthContext();
     useEffect(()=>{
-        dispatchAction(getPosts(user)); 
+        if(user){
+            dispatchAction(getPosts(user)); 
+        }
         // when we dispatch the action, we go to the posts reducers to handle the logic of fetching All posts 
     }, [currentId, dispatchAction, user]);
 

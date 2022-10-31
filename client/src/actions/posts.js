@@ -24,9 +24,9 @@ export function getPosts(user){
     }
 };
 
-export const createPost = (post) => async(dispatchAction) => {
+export const createPost = (post, user) => async(dispatchAction) => {
     try {
-        const {data} = await api.createPost(post); ////axios.post(url, newPost)
+        const {data} = await api.createPost(post, user); ////axios.post(url, newPost)
         console.log("data before dispatching actions!", post);
         dispatchAction({type: CREATE, payload:data})
     } catch (error) {
@@ -34,9 +34,9 @@ export const createPost = (post) => async(dispatchAction) => {
     }
 }
 
-export const updatePost = (id, post) => async(dispatchAction) => {
+export const updatePost = (id, post, user) => async(dispatchAction) => {
     try {
-        const {data} = await api.updatePost(id, post); //returns the updated memory
+        const {data} = await api.updatePost(id, post, user); //returns the updated memory
         console.log("updated post received : ", post);
         dispatchAction({type: UPDATE, payload:data});
     } catch (error) {
@@ -44,9 +44,9 @@ export const updatePost = (id, post) => async(dispatchAction) => {
     }
 }
 
-export const deletePost = (id) => async(dispatchAction) => {
+export const deletePost = (id, user) => async(dispatchAction) => {
     try {
-        await api.deletePost(id); 
+        await api.deletePost(id, user); 
         console.log("post to be deleted : ", id);
         dispatchAction({type: DELETE, payload: id});
     } catch (error) {
@@ -54,9 +54,9 @@ export const deletePost = (id) => async(dispatchAction) => {
     }
 }
 
-export const likePost = (id) => async(dispatchAction) => {
+export const likePost = (id, user) => async(dispatchAction) => {
     try {
-        const {data} = await api.likePost(id); //returns the updated memory
+        const {data} = await api.likePost(id, user); //returns the updated memory
         dispatchAction({type: UPDATE, payload:data});
     } catch (error) {
         console.log(error);      
