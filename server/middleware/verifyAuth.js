@@ -13,7 +13,6 @@ const verifyAuth = async (req, res, next) => {
 
     //get token from the headers: bearer part1.part2.part3
     const token = authorization.split(' ')[1]
-
     try{
         //verify if token is valid
         const {_id} = jwt.verify(token, process.env.SECRET)
@@ -24,7 +23,7 @@ const verifyAuth = async (req, res, next) => {
 
     }catch(error){
         console.log("Invalid token")
-        res.status(401).json({error: 'Invalid token!'})
+        res.status(401).json({error: 'Invalid token!', token: token})
     }
 }
 

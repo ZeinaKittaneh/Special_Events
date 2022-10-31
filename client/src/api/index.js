@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const url = 'https://happy-memories.herokuapp.com/posts';//get all posts requests in the database
-const userUrl = 'https://happy-memories.herokuapp.com/user';//get all users requests in the database
+const url = 'http://localhost:5000/posts';//get all posts requests in the database
+const userUrl = 'http://localhost:5000/user';//get all users requests in the database
 
-export const fetchPosts = (user) => axios.get(url, { Authorization: `Bearer ${user.token}` });
+export const fetchPosts = (user) => axios.get(url, { headers: { Authorization: `Bearer ${user.token}` } });
 
 export const createPost = (newPost) => axios.post(url, newPost);
 
