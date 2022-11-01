@@ -7,7 +7,7 @@ const verifyAuth = async (req, res, next) => {
 
     //if no headers found
     if(!authorization){
-        console.log("auth token required!")
+        console.log("auth token required!", req.headers)
         return res.status(401).json({error: 'Authorization token required!', headers: req.headers})
     }
 
