@@ -39,7 +39,7 @@ const Form=(props) => {
                         setMessageSeverity("error");
                     }
                     else{
-                        dispatchAction(updatePost(props.currentId, postData));
+                        dispatchAction(updatePost(props.currentId, postData, user));
                         console.log("updating memory for: ", props.currentId);
                         setMessage("Memory successfully updated!");
                         setMessageSeverity("success");

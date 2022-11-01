@@ -11,7 +11,7 @@ export const updatePost = (id, updatedMemory, user) => axios.patch(`${url}/${id}
 
 export const deletePost = (id, user) => axios.delete(`${url}/${id}`, { headers: { Authorization: `Bearer ${user.token}` } });
 
-export const likePost = (id, user) => axios.patch(`${url}/${id}/likePost`, { headers: { Authorization: `Bearer ${user.token}` } });
+export const likePost = (id, user) => axios.patch(`${url}/${id}/likePost`,0 , { headers: { Authorization: `Bearer ${user.token}` } });
 
 
 export const loginUser = (user) => axios.post(userUrl, {"body":user}, {

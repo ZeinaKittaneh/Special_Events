@@ -10,6 +10,7 @@ import moment from 'moment';
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
 import Form from "../../Form/Form";
+import useAuthContext from "../../../hooks/useAuthContext"; 
 
 const Post=({post, setCurrentId}) => {
     const dispatchAction = useDispatch();
@@ -18,7 +19,7 @@ const Post=({post, setCurrentId}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {setOpen(false); setCurrentId(null)}
     let closeImgStyle = {cursor:'pointer', float:'right', marginTop: '5px', width: '20px'};
-
+    const {user} = useAuthContext()
     const style = {
         position: 'absolute',
         top: '50%',
@@ -67,11 +68,19 @@ const Post=({post, setCurrentId}) => {
                 </Typography>
             </CardContent>
             <CardActions className={'CardActions'}>
-                <Button size="small" color="primary" onClick={()=>dispatchAction(likePost(post._id))}>
+                <Button size="small" color="primary" onClick={()=>{
+                    if(!user) {                        
+                        return
+                    }
+                    dispatchAction(likePost(post._id, user))}}>
                     <ThumbUpAltIcon fontSize="small"/>
                     Like &nbsp; {post.likeCount} &nbsp;
                 </Button>
-                <Button size="small" color="primary" onClick={()=>dispatchAction(deletePost(post._id))}>
+                <Button size="small" color="primary" onClick={()=>{
+                    if(!user) {                        
+                        return
+                    }
+                    dispatchAction(deletePost(post._id, user))}}>
                     <DeleteIcon fontSize="small"/>
                     Delete 
                 </Button>

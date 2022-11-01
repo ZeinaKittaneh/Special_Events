@@ -56,7 +56,9 @@ export const deletePost = (id, user) => async(dispatchAction) => {
 
 export const likePost = (id, user) => async(dispatchAction) => {
     try {
+        console.log("user in like : ", user)
         const {data} = await api.likePost(id, user); //returns the updated memory
+        console.log("likes data = ", data)
         dispatchAction({type: UPDATE, payload:data});
     } catch (error) {
         console.log(error);      
