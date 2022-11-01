@@ -6,8 +6,8 @@ import PostMessage from '../models/postMessage.js'
 //so we need to make it async and add the await keyword
 export const getPosts = async(req, res) => {
     try {
-        const postMessages = await PostMessage.find();
-        console.log(postMessages);
+        const userId = req.user._id
+        const postMessages = await PostMessage.find({userId});
         res.status(200).json(postMessages);
     } catch (error) {
         res.status(440).json({message: error.message});
@@ -15,7 +15,9 @@ export const getPosts = async(req, res) => {
 }
 
 export const createPost = async (req, res) => {
-    const post = req.body;
+    let post = req.body;
+    const user_id = {userId: req.user._id}
+    post = {...post, ...user_id};
     const newPost = new PostMessage(post);
 
     try {

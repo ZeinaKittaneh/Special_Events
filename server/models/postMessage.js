@@ -14,6 +14,9 @@ const postSchema = mongoose.Schema({
         type: Date,
         default: new Date(),
     },
+    userId:{
+        type: String
+    }
 });
 
 //convert schema into model

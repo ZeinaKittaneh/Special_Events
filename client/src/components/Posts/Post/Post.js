@@ -19,7 +19,7 @@ const Post=({post, setCurrentId}) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => {setOpen(false); setCurrentId(null)}
     let closeImgStyle = {cursor:'pointer', float:'right', marginTop: '5px', width: '20px'};
-    const {user} = useAuthContext()
+    let {user} = useAuthContext()
     const style = {
         position: 'absolute',
         top: '50%',
@@ -69,8 +69,11 @@ const Post=({post, setCurrentId}) => {
             </CardContent>
             <CardActions className={'CardActions'}>
                 <Button size="small" color="primary" onClick={()=>{
-                    if(!user) {                        
+                    if(!user) {  
                         return
+                    }
+                    if(user.data){
+                        user = user.data
                     }
                     dispatchAction(likePost(post._id, user))}}>
                     <ThumbUpAltIcon fontSize="small"/>
@@ -79,6 +82,9 @@ const Post=({post, setCurrentId}) => {
                 <Button size="small" color="primary" onClick={()=>{
                     if(!user) {                        
                         return
+                    }
+                    if(user.data){
+                        user = user.data
                     }
                     dispatchAction(deletePost(post._id, user))}}>
                     <DeleteIcon fontSize="small"/>
