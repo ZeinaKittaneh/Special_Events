@@ -3,12 +3,14 @@ import React from "react";
 // import useStyles from "./styles"
 import { Card, CardActions, CardContent, CardMedia, Button, Typography, Modal, Tooltip } from "@mui/material";
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import DeleteIcon from '@mui/icons-material/Delete';
 import MorehorizIcon from '@mui/icons-material/MoreHoriz';
 import './styles.css';
 import moment from 'moment';
 import { useDispatch } from "react-redux";
-import { deletePost, likePost } from "../../../actions/posts";
+import { deletePost, likePost, favPost } from "../../../actions/posts";
 import Form from "../../Form/Form";
 import useAuthContext from "../../../hooks/useAuthContext"; 
 
@@ -56,10 +58,10 @@ const Post=({post, setCurrentId}) => {
                     </div>                 
                 </Modal>
             </div>
+            <CardContent>
                 <Typography className="Title tag" variant="body2" color="textSecondary">
                     {post.tags.map((tag) => `#${tag} `)}{post.category}
                 </Typography>
-            <CardContent>
                 <Typography className={"Title"} gutterBottom>
                     {post.title}
                 </Typography>
@@ -75,10 +77,24 @@ const Post=({post, setCurrentId}) => {
                     if(user.data){
                         user = user.data
                     }
-                    dispatchAction(likePost(post._id, user))}}>
+                    dispatchAction(favPost(post._id, user))}}>
+                    {post.favorite == true ? <FavoriteIcon fontSize="small"/> : <FavoriteBorderIcon fontSize="small"/>}   
+                </Button>
+
+                {/* <Button size="small" color="primary" 
+                    onClick={()=>{
+                        if(!user) {  
+                            return
+                        }
+                        if(user.data){
+                            user = user.data
+                        }
+                        dispatchAction(likePost(post._id, user))
+                    }}>
                     <ThumbUpAltIcon fontSize="small"/>
                     Like &nbsp; {post.likeCount} &nbsp;
-                </Button>
+                </Button> */}
+
                 <Button size="small" color="primary" onClick={()=>{
                     if(!user) {                        
                         return

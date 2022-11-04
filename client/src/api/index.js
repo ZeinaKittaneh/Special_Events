@@ -13,6 +13,7 @@ export const deletePost = (id, user) => axios.delete(`${url}/${id}`, { headers: 
 
 export const likePost = (id, user) => axios.patch(`${url}/${id}/likePost`,0 , { headers: { Authorization: `Bearer ${user.token}` } });
 
+export const favPost = (id, user) => axios.patch(`${url}/${id}/favPost`,0 , { headers: { Authorization: `Bearer ${user.token}` } });
 
 export const loginUser = (user) => axios.post(userUrl, {"body":user}, {
     headers: {

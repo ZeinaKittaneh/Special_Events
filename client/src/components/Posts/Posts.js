@@ -8,7 +8,7 @@ import { CircularProgress } from '@mui/material';
 
 const Posts=({setCurrentID}) => {
     const posts = useSelector((state) => state.posts);
-    console.log(posts);
+    // console.log(posts);
     // const classes = useStyles();
 
     return (

@@ -67,3 +67,15 @@ export const likePost = async (req, res) => {
   
     res.json(updatedPost); //send the updated post    
 }
+
+export const favPost = async (req, res) => {
+    const { id } = req.params;
+    //to check if the id is a valid mongoose id :
+    if(!mongoose.Types.ObjectId.isValid(id))
+        return res.status(404).send('No post with that id');
+
+    const oldPost = await PostMessage.findById(id); // we need to change the favorite state, first get the old state and flip it
+    const updatedPost = await PostMessage.findByIdAndUpdate(id, {favorite: !oldPost.favorite}, { new: true });// new true : to return the new object
+  
+    res.json(updatedPost); //send the updated post    
+}

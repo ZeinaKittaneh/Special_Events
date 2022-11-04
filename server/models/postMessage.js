@@ -10,6 +10,10 @@ const postSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
+    favorite:{
+        type: Boolean,
+        default: false
+    },
     createdAt:{
         type: Date,
         default: new Date(),
