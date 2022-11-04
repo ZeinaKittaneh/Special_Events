@@ -6,6 +6,7 @@ import Signin from './pages/Signin'
 import Signup from './pages/Signup'
 import AppBar from './components/AppBar'
 import useAuthContext from './hooks/useAuthContext'
+import { Footer } from './components/Footer'
 
 function App() {
   const {user} = useAuthContext()
@@ -30,6 +31,7 @@ function App() {
             />
           </Routes>
         </div>
+        <Footer/>
       </BrowserRouter>
     </div>
   );

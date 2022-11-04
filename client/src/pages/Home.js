@@ -13,7 +13,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import useAuthContext from "../hooks/useAuthContext";
 
 const style = {
-    position: "fixed", right: "8vw", bottom: "20px",
+    position: "fixed", right: "8vw",
     backgroundColor: "#fff", color: "#25467D", borderRadius: "40px", fontSize: "3rem", padding:"7px", 
     ':hover': {color: 'white'},
 };
