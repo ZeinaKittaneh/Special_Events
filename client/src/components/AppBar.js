@@ -16,9 +16,11 @@ import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 import {useLogout} from '../hooks/useLogout';
 import useAuthContext from '../hooks/useAuthContext';
+import CardMedia from "@mui/material/CardMedia";
+import logo from "./images/logo.jpg";
 
-const pages = ['Products', 'Pricing', 'Blog'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+// const pages = ['Products', 'Pricing', 'Blog'];
+// const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
   const {user} = useAuthContext()
@@ -49,8 +51,7 @@ function ResponsiveAppBar() {
   return (
     <AppBar position="static"  variant='elevated' sx={{backgroundColor: "#356CB1", borderRadius: "10px"}}>
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <AdbIcon sx={{ display: 'flex', mr: 1 }} />
+        <Toolbar disableGutters sx={{display:"flex", "justify-content": "space-between"}}>
           <Typography
             variant="h6"
             noWrap
@@ -58,18 +59,18 @@ function ResponsiveAppBar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
             }}
           >
-            LOGO
+            <CardMedia
+              component="img"
+              sx={{
+              width: { xs: "150px", md: "200px" },
+              }}
+              src={logo}
+            />
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -105,7 +106,7 @@ function ResponsiveAppBar() {
               ))}
             </Menu>
 
-          </Box>
+          </Box> */}
           {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           {/* <Typography
             variant="h5"
@@ -125,7 +126,7 @@ function ResponsiveAppBar() {
           >
             LOGO_S
           </Typography> */}
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
                 key={page}
@@ -135,13 +136,17 @@ function ResponsiveAppBar() {
                 {page}
               </Button>
             ))}
-          </Box>
+          </Box> */}
 
-          {user && (<Box sx={{display: "flex"}}><Box>
-            <Button onClick={handleLogout} style={{marginRight: '10px', textDecoration: 'none', color: 'white', padding: '5px', border: '1px solid', borderRadius:'7px'}}>logout</Button>
+          {user && (<Box sx={{display: "flex"}}>
+              <Typography sx={{mr: "10px", paddingTop: "5px"}}>
+                {user.email}
+              </Typography>
+            <Box>
+              <Button onClick={handleLogout} style={{marginRight: '10px', textDecoration: 'none', color: 'white', padding: '5px', border: '1px solid', borderRadius:'7px'}}>logout</Button>
             </Box>
 
-            <Box sx={{ flexGrow: 0}}>
+            {/* <Box sx={{ flexGrow: 0}}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                   <Avatar alt="Zeina Jawad"/>
@@ -169,7 +174,8 @@ function ResponsiveAppBar() {
                   </MenuItem>
                 ))}
               </Menu>
-            </Box></Box>)}
+            </Box> */}
+            </Box>)}
           {!user && <Box sx={{display: "flex"}}>
                 <Button><Link to = {`/`} style={{ textDecoration: 'none', color: 'white'}}>home</Link></Button>
                 <Button><Link to = {`/signin`} style={{ textDecoration: 'none', color: 'white'}}>sign in</Link></Button>
