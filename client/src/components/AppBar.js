@@ -139,7 +139,7 @@ function ResponsiveAppBar() {
           </Box> */}
 
           {user && (<Box sx={{display: "flex"}}>
-              <Typography sx={{mr: "10px", paddingTop: "5px"}}>
+              <Typography sx={{mr: "10px", paddingTop: "5px", font:"bold"}}>
                 {user.email}
               </Typography>
             <Box>
