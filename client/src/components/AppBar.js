@@ -18,12 +18,14 @@ import {useLogout} from '../hooks/useLogout';
 import useAuthContext from '../hooks/useAuthContext';
 import CardMedia from "@mui/material/CardMedia";
 import logo from "./images/logo.jpg";
+import { useEffect } from 'react';
 
 // const pages = ['Products', 'Pricing', 'Blog'];
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
-  const {user} = useAuthContext()
+  let {user} = useAuthContext()
+  const [userEmail, setUserEmail] = React.useState(""); 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,6 +50,16 @@ function ResponsiveAppBar() {
     logout()
   }
   
+  useEffect(() => {
+    if(user) {
+      if(user.data){
+        user = user.data;
+      }
+      setUserEmail(user.email)
+      console.log("user", user.email)
+    }
+  },[user, setUserEmail])
+
   return (
     <AppBar position="static"  variant='elevated' sx={{backgroundColor: "#356CB1", borderRadius: "10px"}}>
       <Container maxWidth="xl">
@@ -140,7 +152,7 @@ function ResponsiveAppBar() {
 
           {user && (<Box sx={{display: "flex"}}>
               <Typography sx={{mr: "10px", paddingTop: "5px", font:"bold"}}>
-                {user.email}
+                {userEmail}
               </Typography>
             <Box>
               <Button onClick={handleLogout} style={{marginRight: '10px', textDecoration: 'none', color: 'white', padding: '5px', border: '1px solid', borderRadius:'7px'}}>logout</Button>

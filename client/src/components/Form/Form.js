@@ -18,6 +18,7 @@ const Form=(props) => {
         tags:'',
         category: '',
         selectedFile:'',
+        createdAt: ''
     });
     const [message, setMessage] = useState(null);
     const [messageSeverity, setMessageSeverity] = useState(null);
@@ -62,6 +63,7 @@ const Form=(props) => {
                         setMessageSeverity("error");
                     }
                     else{
+                        postData.createdAt = new Date();
                         dispatchAction(createPost(postData, user));
                         setMessage("Memory successfully added!");
                         setMessageSeverity("success");
@@ -98,6 +100,7 @@ const Form=(props) => {
             tags:'',
             category:'',
             selectedFile:'',
+            createdAt: ''
         });
     }
     // const classes = useStyles();

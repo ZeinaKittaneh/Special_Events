@@ -71,9 +71,9 @@ const Post=({post, setCurrentId}) => {
             </CardContent>
             <CardActions className={'CardActions'}>
                 <Button size="small" color="primary" onClick={()=>{
-                    if(!user) {  
-                        return
-                    }
+                    // if(!user) {  
+                    //     return
+                    // }
                     if(user.data){
                         user = user.data
                     }

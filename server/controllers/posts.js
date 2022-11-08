@@ -31,14 +31,14 @@ export const createPost = async (req, res) => {
 export const updatePost = async (req, res) => {
     // const {id: _id} = req.params; //here we renamed our id to _id
     const { id } = req.params;
-    const { title, message, creator, selectedFile, tags } = req.body;
+    const { title, message, creator, selectedFile, tags, createdAt } = req.body;
     //to check if the id is a valid mongoose id :
     if(!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).send('No post with that id');
 
     const post = req.body;//sent from frontend
 
-    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+    const updatedPost = { creator, title, message, tags, selectedFile, createdAt, _id: id };
     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
   
     res.json(updatedPost); //send the updated post    

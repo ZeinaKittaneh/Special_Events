@@ -14,25 +14,27 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <AppBar />
-        <div className="pages">
-          <Routes>
-            <Route 
-              path="/"
-              element={user ? <Home /> : <Navigate to = "/signin"/>}
-            />
-            <Route 
-              path="/signin" 
-              element={!user ? <Signin /> : <Navigate to = "/"/>} 
-            />
-            <Route 
-              path="/signup" 
-              element={!user ? <Signup /> : <Navigate to = "/"/>} 
-            />
-          </Routes>
+        <div className="main">
+          <AppBar />
+          <div className="pages">
+            <Routes>
+              <Route 
+                path="/"
+                element={user ? <Home /> : <Navigate to = "/signin"/>}
+              />
+              <Route 
+                path="/signin" 
+                element={!user ? <Signin /> : <Navigate to = "/"/>} 
+              />
+              <Route 
+                path="/signup" 
+                element={!user ? <Signup /> : <Navigate to = "/"/>} 
+              />
+            </Routes>
+          </div>
         </div>
-        <Footer/>
       </BrowserRouter>
+      <Footer/>
     </div>
   );
 }
