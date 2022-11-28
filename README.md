@@ -3,7 +3,7 @@
 A website that allows user to add their special events and memories with the related details.
 ![screenshot](/screenshot.jpg?raw=true "user main page")
 
-Front-end: ReactJS, materialui
+Front-end: ReactJS, Material UI
 
 Back-end: NodeJS
 
